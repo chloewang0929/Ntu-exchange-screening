@@ -4,8 +4,8 @@ __Web crawler__: Crawls the information we need from the webpage of the National
 __Webpage__: Create a window that allows users to input their language test scores, departments, GPA and other information, and then select the country they want to view. Finally, a organized form will pop up, showing the schools they can apply for and the school's detailed information.
 
 # Web Crawler Algorithm:
-Our goal is to have the program click on the "Application Information" page of each school sequentially from the list of applied schools, and then crawl out the information of individual schools.
-![My Image](臺大交換學生計劃一覽表.png)
+Our goal is to have the program click on the "Application Information" page of each school sequentially from the list of applied schools, and then crawl out the information of individual schools.<br>
+![My Image](pic1.JPEG)
 # Initialize git
 git init
 
