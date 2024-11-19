@@ -1,5 +1,5 @@
 # Ntu-exchange-screening
-# Create project directory
+# Topic: Screening exchange schools that meet application requirements
 mkdir ntu-exchange-screening
 cd ntu-exchange-screening
 
