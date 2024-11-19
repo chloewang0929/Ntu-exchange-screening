@@ -5,7 +5,7 @@ __Webpage__: Create a window that allows users to input their language test scor
 
 # Web Crawler Algorithm:
 Our goal is to have the program click on the "Application Information" page of each school sequentially from the list of applied schools, and then crawl out the information of individual schools.
-
+![My Image](assets/images/臺大交換學生計畫一覽表.png)
 # Initialize git
 git init
 
