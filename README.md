@@ -1,5 +1,5 @@
 # Ntu-exchange-screening
-# Create project director
+# Create project directory
 mkdir ntu-exchange-screening
 cd ntu-exchange-screening
 
