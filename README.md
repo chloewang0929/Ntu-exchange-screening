@@ -30,9 +30,9 @@ Next, we use __loops__ to crawl data on the pages of different schools. We save 
  <br>
 __1. Chinese and English name of the university__<br>
 During our testing, we found that there were English commas in the English names, which would affect the formatting of the csv file during output, so we replaced          them with "," and stored the Chinese and English names separately.<br>
-__2. Second application__
+__2. Second application__<br>
 Similar to the above, the attribute used is 'class': 'uninfo-awall', and it is judged whether there is the keyword "This school is open to students who want to go abroad for exchange for the second time."<br>
-__3. Other precautions__
+__3. Other precautions__<br>
 Since other items including "Application Qualifications", "Quota", "School Calendar", "Registration and Payment", "Notes", and "Accommodation Information" are all stored in the same "class":'uninfo-content' title, among which Most do not have a uniform format. Therefore, we first climb down and save it into the double list of uninfo_contents, and then do segmentation and sorting later. Use "、" to replace "," at the same time to avoid csv file jumping.
 (The contents of each list in uninfo_contents are in the order described above. For example, the application qualification is item 0)<br>
  <br>
@@ -40,6 +40,35 @@ We use another loop to sort out "a bunch of notes" according to different univer
 ```python
 for i in range(len(uninfo_contents_list)):
 ```
+__1. Open exchange quota__<br>
+Use the fixed text format "X names in one semester" in "Quota" to find the positions of semesters and names respectively. Note that if the exchange is not open, such a format cannot be found, so append "0" directly to avoid the final format jumping.<br>
+
+__2. GPA__<br>
+Search for the keyword "GPA" in "Application Qualifications" to find out one or more GPA score requirements to two decimal places.<br>
+```python
+# GPA
+    ct = 0
+    score = ""
+    while True:
+        index = uninfo_contents_list[i][0].find("GPA", ct)
+        if index == -1 and ct == 0:
+            score = "None"
+            break
+        if index == -1:
+            break
+        else:
+            score += uninfo_contents_list[i][0][index + 5:index + 9]
+            ct = index + 1
+    gpa_list.append(score)
+```
+
+
+
+
+
+
+
+
 # Initialize git
 git init
 
