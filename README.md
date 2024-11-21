@@ -61,7 +61,53 @@ Search for the keyword "GPA" in "Application Qualifications" to find out one or 
             ct = index + 1
     gpa_list.append(score)
 ```
+__3. World ranking__<br>
+Since the application information webpage does not have world rankings, we first used another program to crawl out the QS World University Rankings, saved them into a csv file, then used pandas to merge the files of National Taiwan University Exchange School and the world rankings, and then converted them into a dictionary. If the university does not have world ranking information, None will be displayed in this column.<br>
+```python
+QS_rank_dict = {'Université Laval': '416', ……  'The University of Auckland': '88', 'University of Cape Town': '198'}
 
+ # World ranking
+    if english_uni_list[i] in QS_rank_dict.keys():
+        univ_rank_list.append(QS_rank_dict[english_uni_list[i]])
+    else:
+        univ_rank_list.append("None")
+```
+__4. Application group__<br>
+The same method as GPA, find the position of all keyword "group" in the application qualifications, take the first two words into the group (for example: Japanese group) and add it to the empty string, and collect it every time you complete a university Add the obtained string to language_group_list and clear the string. If there is no group, append "None".<br>
+
+__5. College Restrictions__<br>
+Pre-store all the colleges of National Taiwan University as keywords in the list:<br>
+```python
+academy_key_list = ["電機資訊學院", "管理學院", "法律學院", "醫學院", "公共衛生學院", "工學院", "理學院", "社會科學院", "文學院", "生命科學院", "生物資源暨農學院"]
+```
+Then use in in the application qualification field to check whether the keyword is included one by one. If so, add this keyword to the mid_academy_restrict_list relay list. After each college is visited, the relay list is put into the double-layered list of academy_restrict_list.
+However, since this method only finds out whether it contains keywords, and among the college restrictions, __some are "restricted to ○○ colleges for application" and some are "○○ colleges are not allowed to apply",__ so the output results must be manually adjusted afterwards.<br>
+```python
+# College Restrictions
+    mid_academy_restrict_list = []
+    for keyword in academy_key_list:
+        if keyword in uninfo_contents_list[i][0]:
+            mid_academy_restrict_list.append(keyword)
+    if mid_academy_restrict_list == []:
+        mid_academy_restrict_list.append("None")
+    academy_restrict_list.append(mid_academy_restrict_list)
+```
+__6. Language certificate__<br>
+Similar to the above method, manually check any several universities in each region, find all the test names and put them into the keyword list:<br>
+```python
+certificate_key_list = ["葡萄牙語能力證明", "TOEFL iBT", "IELTS", "法語檢定", "全民英檢", "西語檢定", "DELE", "SIELE", "日文檢定", "韓語檢定", "俄語檢定", "德語檢定"]
+```
+Check the application qualifications one by one to see if they contain specific tests and put them in the relay list. __The difference from the above is that since the formats of IELTS and TOEFL scores are relatively consistent, scores can be added uniformly through the program,__ while other tests do not have a unified format, so other tests need to be manually adjusted afterwards to add score requirements.<br>
+ <br>                                                                                                                                                                     
+The last step of the crawler is to store all the collated data into a csv file:<br>
+What is more special is that the language certificates and college restrictions are stored in a double-layered list. They are exported into a single-column csv file using a double-layered loop. If there are more than two values ​​in each university that need to be exported, use Chinese commas to separate them. (English commas will be judged as column changes in csv).<br>
+```python
+for i in range(0, len(uninfo_contents_list)):
+    for k in range(0, len(certificate_need_list[i]) - 1):
+        file2.write(str(certificate_need_list[i][k]) + "，")
+    file2.write(str(certificate_need_list[i][-1]) + "\n")
+```
+__Part of the data exported after manual sorting:__
 
 
 
