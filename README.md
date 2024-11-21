@@ -27,8 +27,13 @@ links = soup.find_all('a', href=True, text='申請資料')
 filtered_links = [link for link in links if '聖保羅大學' not in link.get('href')]
 ```
 Next, we use __loops__ to crawl data on the pages of different schools. We save all the required data into the list first, so that it can be added to the csv at once.<br>
- __1. Chinese and English name of the university__<br>
-      During our testing, we found that there were English commas in the English names, which would affect the formatting of the csv file during output, so we replaced          them with "," and stored the Chinese and English names separately.
+__1. Chinese and English name of the university__<br>
+During our testing, we found that there were English commas in the English names, which would affect the formatting of the csv file during output, so we replaced          them with "," and stored the Chinese and English names separately.<br>
+__2. Second application__
+Similar to the above, the attribute used is 'class': 'uninfo-awall', and it is judged whether there is the keyword "This school is open to students who want to go abroad for exchange for the second time."<br>
+__3. Other precautions__
+Since other items including "Application Qualifications", "Quota", "School Calendar", "Registration and Payment", "Notes", and "Accommodation Information" are all stored in the same "class":'uninfo-content' title, among which Most do not have a uniform format. Therefore, we first climb down and save it into the double list of uninfo_contents, and then do segmentation and sorting later. Use "、" to replace "," at the same time to avoid csv file jumping.
+(The contents of each list in uninfo_contents are in the order described above. For example, the application qualification is item 0)
 # Initialize git
 git init
 
