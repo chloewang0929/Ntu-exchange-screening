@@ -14,7 +14,7 @@ Our goal is to have the program click on the "Application Information" page of e
 (pic2: Application information pages for each university)<br>
  <br>
 Therefore, first crawl out all the web links to the "Application Information" page that you want to enter sequentially from the list, and store them in the list of filtered_links.<br>
-'''python
+```python
 # 獲取網頁原始碼
 url = "https://oia.ntu.edu.tw/outgoing/school.list"  # 將URL替換為你的目標網頁
 response = requests.get(url)
@@ -25,7 +25,7 @@ links = soup.find_all('a', href=True, text='申請資料')
 
 # 篩選掉指定網站的連結
 filtered_links = [link for link in links if '聖保羅大學' not in link.get('href')]
-'''
+```
 # Initialize git
 git init
 
