@@ -11,7 +11,9 @@ Our goal is to have the program click on the "Application Information" page of e
 ![My Image](pic1.JPEG)<br>
 (pic1: List of exchange student programs at National Taiwan University)
 ![My Image](pic2.jpeg)<br>
-(pic2: Application information pages for each university)
+(pic2: Application information pages for each university)<br>
+ <br>
+Therefore, first crawl out all the web links to the "Application Information" page that you want to enter sequentially from the list, and store them in the list of filtered_links.
 # Initialize git
 git init
 
