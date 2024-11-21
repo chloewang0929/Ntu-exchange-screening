@@ -10,6 +10,8 @@ __Webpage__: Create a window that allows users to input their language test scor
 Our goal is to have the program click on the "Application Information" page of each school sequentially from the list of applied schools, and then crawl out the information of individual schools.<br>
 ![My Image](pic1.JPEG)<br>
 (pic1: List of exchange student programs at National Taiwan University)
+![My Image](pic2.jpeg)<br>
+(pic2: Application information pages for each university)
 # Initialize git
 git init
 
