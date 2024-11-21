@@ -26,6 +26,9 @@ links = soup.find_all('a', href=True, text='申請資料')
 # Filter out links to specific websites
 filtered_links = [link for link in links if '聖保羅大學' not in link.get('href')]
 ```
+Next, we use __loops__ to crawl data on the pages of different schools. We save all the required data into the list first, so that it can be added to the csv at once.<br>
+ __1. Chinese and English name of the university__<br>
+      During our testing, we found that there were English commas in the English names, which would affect the formatting of the csv file during output, so we replaced          them with "," and stored the Chinese and English names separately.
 # Initialize git
 git init
 
