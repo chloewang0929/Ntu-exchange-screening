@@ -123,8 +123,11 @@ It is a field that requires input of numbers, so a number input field is set.<br
 Since there are only 5 to 6 options for the remaining tests, a drop-down menu is provided for the user to input.<br>
  <br>
 [right half]<br>
-List other conditions that need to be filtered, including the user's personal GPA in the previous academic year and the department or department where he or she is located.
-
+List other conditions that need to be filtered, including the user's personal GPA in the previous academic year and the department or department where he or she is located.<br>
+![My Image](pic5.png)<br>
+ <br>
+Finally, enter the country you want to view and let the system sort out the schools he can apply for.<br>
+![My Image](pic6.png)<br>
 
 
 # Initialize git
