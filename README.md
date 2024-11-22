@@ -113,7 +113,7 @@ __Part of the data exported after manual sorting:__<br>
 # __System Interface Algorithm__:<br>
 The following is a screenshot of the system screen. The upper half is the condition menu that is initially executed. After everyone has entered all the search conditions and clicks Submit, the results window in the lower half will pop up, listing the schools that meet the conditions and related information.<br>
 ![My Image](pic4.png)<br>
-__(1)Input interface__<br>
+__(1) Input interface__<br>
 Our interface is mainly divided into left half and right half.<br>
 
 [left half]<br>
@@ -128,7 +128,29 @@ List other conditions that need to be filtered, including the user's personal GP
  <br>
 Finally, enter the country you want to view and let the system sort out the schools he can apply for.<br>
 ![My Image](pic6.png)<br>
-
+__(2) Output interface__<br>
+The following information is output from this form:<br>
+1. School Chinese name<br>
+2. School English name<br>
+3. Country<br>
+4. World ranking information<br>
+5. Application group: Some schools offer more than one group to apply for. There may be a general group and a specific language group, so they are listed here for your reference.<br>
+6. Specific GPA lower limit: You can confirm the required GPA and evaluate whether your own GPA is much higher than the lower limit.<br>
+7. Department restrictions: Although it has been filtered through the program code, some schools in this column have language test score restrictions for specific departments, so we chose to present them.<br>
+8. Language test: Although it has been screened through the program code, this column contains more detailed instructions, for example: the minimum requirements for TOEFL writing, whether to accept home edition; the minimum standards for each IELTS subject, etc.<br>
+ <br>
+__(3) Special function libraries used__<br>
+1. tkinter - Create menu screen, including drop-down and input fields<br>
+2. csv - read crawler data<br>
+3. pandas - Create result output screen<br>
+ <br>
+__(4) Judgment and screening process__<br>
+We use four major steps to select schools that meet the criteria, put the school numbers that pass the screening at each level into a list, and finally take the intersection and present it.<br>
+ <br>
+First, match the information of the department to "XX department only" or "XX department not accepted" to get the school number to which the department can apply.<br>
+Secondly, remove the schools with 0 exchange places for this semester and only take out the schools with exchange places.<br>
+Furthermore, refer to the input language test scores and confirm whether the information specified by the corresponding school is met, and obtain the qualified school number.<br>
+Finally, consider the selected country and limit the intersection to schools in that country.
 
 # Initialize git
 git init
