@@ -113,7 +113,17 @@ __Part of the data exported after manual sorting:__<br>
 # __System Interface Algorithm__:<br>
 The following is a screenshot of the system screen. The upper half is the condition menu that is initially executed. After everyone has entered all the search conditions and clicks Submit, the results window in the lower half will pop up, listing the schools that meet the conditions and related information.<br>
 ![My Image](pic4.png)<br>
+__(1)Input interface__<br>
+Our interface is mainly divided into left half and right half.<br>
 
+[left half]<br>
+List common language tests in various countries, including IELTS and TOEFL
+It is a field that requires input of numbers, so a number input field is set.<br>
+
+Since there are only 5 to 6 options for the remaining tests, a drop-down menu is provided for the user to input.<br>
+ <br>
+[right half]<br>
+List other conditions that need to be filtered, including the user's personal GPA in the previous academic year and the department or department where he or she is located.
 
 
 
