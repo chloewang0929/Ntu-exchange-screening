@@ -159,3 +159,259 @@ Finally, consider the selected country and limit the intersection to schools in 
 # Remark: Produce by Claude
 
 I entered my information and methods into claude, and he generated a beautiful web page.
+
+![My Image](pic7.jpg)<br>
+
+```python
+import React, { useState } from 'react';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Select } from '@/components/ui/select';
+import { Label } from '@/components/ui/label';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Globe, School, Languages, GraduationCap } from 'lucide-react';
+
+// Sample data - in real application, this would come from an API
+const sampleUniversities = [
+  {
+    name: "University of Tokyo",
+    country: "Japan",
+    continent: "Asia",
+    worldRank: 23,
+    gpaRequirement: 3.0,
+    languageRequirement: {
+      TOEFL: 80,
+      IELTS: 6.5,
+      JLPT: "N2"
+    },
+    quota: 5,
+    website: "https://www.u-tokyo.ac.jp/en/",
+    applicationUrl: "https://www.u-tokyo.ac.jp/en/prospective-students/",
+    tuitionFees: "Waived",
+    departments: ["Engineering", "Science", "Business"]
+  },
+  {
+    name: "University of California, Berkeley",
+    country: "USA",
+    continent: "North America",
+    worldRank: 4,
+    gpaRequirement: 3.5,
+    languageRequirement: {
+      TOEFL: 90,
+      IELTS: 7.0
+    },
+    quota: 3,
+    website: "https://www.berkeley.edu/",
+    applicationUrl: "https://admissions.berkeley.edu/",
+    tuitionFees: "Required",
+    departments: ["All"]
+  }
+];
+
+const ExchangeScreening = () => {
+  const [filters, setFilters] = useState({
+    gpa: "",
+    toefl: "",
+    ielts: "",
+    continent: "",
+    country: "",
+    department: ""
+  });
+  
+  const [filteredResults, setFilteredResults] = useState([]);
+  const [isFiltered, setIsFiltered] = useState(false);
+
+  const handleFilter = () => {
+    const results = sampleUniversities.filter(uni => {
+      const gpaCheck = !filters.gpa || uni.gpaRequirement <= parseFloat(filters.gpa);
+      const toeflCheck = !filters.toefl || 
+        (uni.languageRequirement.TOEFL && uni.languageRequirement.TOEFL <= parseInt(filters.toefl));
+      const ieltsCheck = !filters.ielts || 
+        (uni.languageRequirement.IELTS && uni.languageRequirement.IELTS <= parseFloat(filters.ielts));
+      const continentCheck = !filters.continent || uni.continent === filters.continent;
+      const countryCheck = !filters.country || uni.country.toLowerCase().includes(filters.country.toLowerCase());
+      const departmentCheck = !filters.department || 
+        uni.departments.includes("All") || 
+        uni.departments.includes(filters.department);
+
+      return gpaCheck && toeflCheck && ieltsCheck && continentCheck && countryCheck && departmentCheck;
+    });
+
+    setFilteredResults(results);
+    setIsFiltered(true);
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-50 p-8">
+      <Card className="max-w-6xl mx-auto">
+        <CardHeader>
+          <CardTitle className="text-2xl font-bold flex items-center gap-2">
+            <School className="h-6 w-6" />
+            NTU Exchange Student Qualification Screening
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            {/* Academic Requirements */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold flex items-center gap-2">
+                <GraduationCap className="h-5 w-5" />
+                Academic Requirements
+              </h3>
+              <div className="space-y-2">
+                <Label htmlFor="gpa">Minimum GPA</Label>
+                <Input
+                  id="gpa"
+                  type="number"
+                  step="0.01"
+                  placeholder="Enter your GPA"
+                  value={filters.gpa}
+                  onChange={(e) => setFilters({...filters, gpa: e.target.value})}
+                  className="w-full"
+                />
+              </div>
+            </div>
+
+            {/* Language Requirements */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold flex items-center gap-2">
+                <Languages className="h-5 w-5" />
+                Language Scores
+              </h3>
+              <div className="space-y-2">
+                <Label htmlFor="toefl">TOEFL Score</Label>
+                <Input
+                  id="toefl"
+                  type="number"
+                  placeholder="TOEFL score"
+                  value={filters.toefl}
+                  onChange={(e) => setFilters({...filters, toefl: e.target.value})}
+                  className="w-full"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="ielts">IELTS Score</Label>
+                <Input
+                  id="ielts"
+                  type="number"
+                  step="0.5"
+                  placeholder="IELTS score"
+                  value={filters.ielts}
+                  onChange={(e) => setFilters({...filters, ielts: e.target.value})}
+                  className="w-full"
+                />
+              </div>
+            </div>
+
+            {/* Location Preferences */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold flex items-center gap-2">
+                <Globe className="h-5 w-5" />
+                Location Preferences
+              </h3>
+              <div className="space-y-2">
+                <Label htmlFor="continent">Continent</Label>
+                <select
+                  id="continent"
+                  className="w-full rounded-md border border-gray-300 p-2"
+                  value={filters.continent}
+                  onChange={(e) => setFilters({...filters, continent: e.target.value})}
+                >
+                  <option value="">All Continents</option>
+                  <option value="Asia">Asia</option>
+                  <option value="Europe">Europe</option>
+                  <option value="North America">North America</option>
+                  <option value="South America">South America</option>
+                  <option value="Oceania">Oceania</option>
+                  <option value="Africa">Africa</option>
+                </select>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="country">Country</Label>
+                <Input
+                  id="country"
+                  placeholder="Enter country name"
+                  value={filters.country}
+                  onChange={(e) => setFilters({...filters, country: e.target.value})}
+                  className="w-full"
+                />
+              </div>
+            </div>
+          </div>
+
+          <Button 
+            onClick={handleFilter}
+            className="w-full md:w-auto"
+          >
+            Search Universities
+          </Button>
+
+          {/* Results Section */}
+          {isFiltered && (
+            <div className="mt-8">
+              <h3 className="text-xl font-semibold mb-4">Search Results ({filteredResults.length} universities found)</h3>
+              <div className="grid grid-cols-1 gap-4">
+                {filteredResults.map((uni, index) => (
+                  <Card key={index} className="p-4">
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <h4 className="text-lg font-semibold">{uni.name}</h4>
+                        <p className="text-sm text-gray-600">{uni.country} • World Rank: {uni.worldRank}</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-sm font-semibold">Available Spots: {uni.quota}</p>
+                        <p className="text-sm text-gray-600">Tuition: {uni.tuitionFees}</p>
+                      </div>
+                    </div>
+                    <div className="mt-4 grid grid-cols-2 gap-4 text-sm">
+                      <div>
+                        <p className="font-semibold">Language Requirements:</p>
+                        <ul className="list-disc list-inside">
+                          {uni.languageRequirement.TOEFL && (
+                            <li>TOEFL: {uni.languageRequirement.TOEFL}</li>
+                          )}
+                          {uni.languageRequirement.IELTS && (
+                            <li>IELTS: {uni.languageRequirement.IELTS}</li>
+                          )}
+                          {uni.languageRequirement.JLPT && (
+                            <li>JLPT: {uni.languageRequirement.JLPT}</li>
+                          )}
+                        </ul>
+                      </div>
+                      <div>
+                        <p className="font-semibold">Available Departments:</p>
+                        <p>{uni.departments.join(", ")}</p>
+                      </div>
+                    </div>
+                    <div className="mt-4 flex gap-4">
+                      <a
+                        href={uni.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-600 hover:underline text-sm"
+                      >
+                        Official Website
+                      </a>
+                      <a
+                        href={uni.applicationUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-600 hover:underline text-sm"
+                      >
+                        Apply Now
+                      </a>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+    </div>
+  );
+};
+
+export default ExchangeScreening;
+```
