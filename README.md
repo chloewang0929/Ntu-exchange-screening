@@ -145,8 +145,9 @@ __(3) Special function libraries used__
 1. tkinter - Create menu screen, including drop-down and input fields<br>
 2. csv - read crawler data<br>
 3. pandas - Create result output screen<br>
- <br>
-__(4) Judgment and screening process__ <br>
+
+__(4) Judgment and screening process__
+
 We use four major steps to select schools that meet the criteria, put the school numbers that pass the screening at each level into a list, and finally take the intersection and present it.<br>
  <br>
 First, match the information of the department to "XX department only" or "XX department not accepted" to get the school number to which the department can apply.<br>
