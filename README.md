@@ -128,7 +128,8 @@ List other conditions that need to be filtered, including the user's personal GP
  <br>
 Finally, enter the country you want to view and let the system sort out the schools he can apply for.<br>
 ![My Image](pic6.png)<br>
-__(2) Output interface__<br>
+__(2) Output interface__
+
 The following information is output from this form:<br>
 1. School Chinese name<br>
 2. School English name<br>
@@ -139,7 +140,7 @@ The following information is output from this form:<br>
 7. Department restrictions: Although it has been filtered through the program code, some schools in this column have language test score restrictions for specific departments, so we chose to present them.<br>
 8. Language test: Although it has been screened through the program code, this column contains more detailed instructions, for example: the minimum requirements for TOEFL writing, whether to accept home edition; the minimum standards for each IELTS subject, etc.<br>
  <br>
-__(3) Special function libraries used__
+__(3) Special function libraries used__<br>
 1. tkinter - Create menu screen, including drop-down and input fields<br>
 2. csv - read crawler data<br>
 3. pandas - Create result output screen<br>
