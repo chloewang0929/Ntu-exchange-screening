@@ -113,7 +113,8 @@ __Part of the data exported after manual sorting:__<br>
 # __System Interface Algorithm__:<br>
 The following is a screenshot of the system screen. The upper half is the condition menu that is initially executed. After everyone has entered all the search conditions and clicks Submit, the results window in the lower half will pop up, listing the schools that meet the conditions and related information.<br>
 ![My Image](pic4.png)<br>
-__(1) Input interface__<br>
+__(1) Input interface__
+
 Our interface is mainly divided into left half and right half.<br>
 
 [left half]<br>
