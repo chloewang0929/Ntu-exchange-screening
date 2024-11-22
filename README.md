@@ -108,7 +108,7 @@ for i in range(0, len(uninfo_contents_list)):
     file2.write(str(certificate_need_list[i][-1]) + "\n")
 ```
 __Part of the data exported after manual sorting:__<br>
-![My Image](pic3.png)<br>
+![My Image](pic3.JPG)<br>
 
 
 
