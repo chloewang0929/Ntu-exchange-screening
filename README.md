@@ -139,8 +139,9 @@ The following information is output from this form:<br>
 6. Specific GPA lower limit: You can confirm the required GPA and evaluate whether your own GPA is much higher than the lower limit.<br>
 7. Department restrictions: Although it has been filtered through the program code, some schools in this column have language test score restrictions for specific departments, so we chose to present them.<br>
 8. Language test: Although it has been screened through the program code, this column contains more detailed instructions, for example: the minimum requirements for TOEFL writing, whether to accept home edition; the minimum standards for each IELTS subject, etc.<br>
- <br>
-__(3) Special function libraries used__<br>
+
+__(3) Special function libraries used__
+
 1. tkinter - Create menu screen, including drop-down and input fields<br>
 2. csv - read crawler data<br>
 3. pandas - Create result output screen<br>
